@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #first {
+      background-color: red;
+      width: 300px;
+      height: 300px;
+    }
+    #second {
+      background-color: orange;
+      width: 200px;
+      height: 200px;
+    }
+    #third {
+      background-color: green;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- <div id="first" onclick="firstClickEvent()">
+    <div id="second" onclick="secondClickEvent()">
+      <div id="third" onclick="thirdClickEvent()"></div>
+    </div>
+  </div> -->
+
+  <div id="first" onclick="firstClickEvent(event)"></div>
+    <div id="second">
+      <div id="third"></div>
+    </div>
+  </div>
+
+  <script>
+    // ES5 버전의 문제점
+    // 1. 중복 선언 허용 문제
+    // 2. Hoisting 문제
+
+    // Hoisting이란? 변수와 함수의 선언부분을 파일의 상단으로 끌고올라오는 js 자체 편의 기능
+    // 원래 Hoisting은 진짜로 편의 기능이 맞음
+    // 이게 Event달아줄 떄는 편의 기능이었는데, 프로젝트를 개발하려고 보니깐 버그를 유발하는 기능이 되는 것
+    // 그냥 아싸리 막아주자 <<
+
+
+    // 함수 선언식
+    // function test() {
+
+    // }
+
+    // 함수 표현식 (ES6)
+    // let test = function() {
+
+    // }
+
+    // 함수 람다식 (ES7) 
+    // let test = () => {
+
+    // }
+
+    // let power = number => number * number ( 매개변수 1개, return 함수식 1줄이면 이렇게 축약이 가능하다)
+    // console.log(power(4))
+
+    // 상수
+    // let num1 변수
+    // const num2 상수 ( 혹시 모를 개발자의 실수를 막으려고 )
+    // 기본적으로 const를 써야 함
+    // 코드 로직에 따라 중간에 값이 바뀌어야 하는 애한테만 따로 Let으로 선언한다 (for문 안의 변수는 let으로 선언)
+
+
+    // tempLate Literal
+    // const name = "스테이지어스"
+    // console.log("내 이름은" + name + "입니다.")
+    // console.log(`4의 제곱은 ${power(4)} 입니다`)
+
+    // default parameter
+    // const area = (radius, pie = 3.14) => {
+    //   return radius * radius * pie
+    // }
+
+    // area(3)
+    // area(4)
+    // area(5)
+    // area(3, 3.1546546)
+
+    // const printData = (type, option = "asc") => {
+
+    // }
+
+    // printData("notice", "desc")
+
+    // rest parameter
+    // const sum = (...datas) => {
+    //   let result = 0
+    //   for (let index = 0; index < datas.length; index++) {
+    //     result += datas[index]
+    //   }
+    // }
+
+    // sum(1, 2, 3)
+    // sum(1, 10)
+    // sum(1, 2, 3, 4, 5)
+
+
+    // Object
+
+    // 이미 알고 있는 자료구조 : list
+    // const list = []
+    // const obj = {
+    //   "name" : "stageus",
+    //   "birth" : "2021-01-04"
+    // }
+
+    // Object Literal
+
+    // obj.name // obj["name"]
+    // obj.birth // obj["birth"]
+    // const key = "name"
+    // obj[key]
+
+
+    //Spred
+    //자료구조를 뿌려주는 문법
+
+    // const arr = [1, 2, 3]
+    // const arr2 = [4, 5, 6]
+    // const newList = [...arr, ...arr2]
+    // // case1 : 여러개의 자료구조를 합칠 때
+    // // case2 : 원본 값 과의 링크를 끊을 때 사용함
+    // // 원시타입 참조타입
+
+    // console.log(arr) // [1, 2, 3]
+    // console.log(...arr) // [1, 2, 3]
+
+    // let num = 10
+    // const convert = (n) => { // pass by value 메모리값의 복사값
+    //   n += 10
+    // }
+    // convert(num)
+    // console.log(num)  // 10
+
+    // let list = [10]
+    // const convert2 = (l) => { // pass by reference 메모리값의 주소값
+    //   l[0] += 10
+    // }
+    // convert2([...list]) // 새로운 값을 생성
+    // console.log(list) // [20]
+
+    // Destructuring
+
+    // const obj = {
+    //   "name" : "스테이지어스",
+    //   "birth" : "2021-01-04"
+    // }
+
+    // const func = (object) => {
+    //   // const name = object.name
+    //   // const birth = object.birth
+    //   const { name, birth} = object
+      
+    //   console.log(name)
+    //   console.log(name)
+    //   console.log(name)
+    //   console.log(name)
+    // }
+
+    // func(obj)
+
+
+    // array helper
+    // list를 반복문으로 돌려야할 때 간편하게 해주는 문법
+
+    // const list = [1, 2, 3, 4, 5]
+
+    // for (let index = 0; index <list.length; index++) {
+    //   console.log(list[index])
+    // }
+
+    // // list.foEach((elem) => {
+    // //   console.log(elem)
+    // // })
+
+    // list.forEach(elem => console.log(elem))
+
+    // const newList = list.map(elem => elem * elem) // 값을 받아서 옮겨준다
+    // console.log(newList)
+
+    // const newList = list.filter((elem) => { // 값을 순차적으로 필터링 하여 옮겨준다 
+    //   return elem % 2 == 1
+    // })
+
+    // ES14까지의 버전이 현재까지 나옴 하지만 규모는 ES6랑 거의 동등함 오늘 배운 내용이외에도 많은 문법들이 있지만 객체형 자바스크립트이기 떄문에 나중에 공부하는 것이 좋다
+
+    // const firstClickEvent = () => {
+    //   console.log("first")
+    // }
+    // const secondClickEvent = () => {
+    //   console.log("second")
+    // }
+    // const thirdClickEvent = () => {
+    //   console.log("third")
+    // }
+
+    // 이벤트 델리게이션
+    const firstClickEvent = (e) => {
+      const id= e.target.id
+      switch (id) {
+        case "first":
+          console.log("first")
+          break
+        case "second":
+          console.log("second")
+          break
+        case "third":
+          console.log("third")
+          break
+      }
+    }
+  </script>
+
+</body>
+</html>
